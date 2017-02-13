@@ -19,7 +19,7 @@
          *  基类  父类
          *
          *  子类
-         * */
+         *
 
         Object.prototype.name="顶层的name"
 
@@ -42,6 +42,45 @@
 
 
         console.log(new stu().name);
+
+
+
+        继承的原理
+        深拷贝
+        浅拷贝
+
+
+         */
+
+
+        var zhangsan={name:"zhangsan",age:12,sex:"man",son:{name:"xiaozhangsan",sun:{}}};
+
+        console.log(zhangsan.son.name);
+
+        var lisi=copy(zhangsan);
+
+        lisi.son.name="xiaolisi";
+        console.log(lisi.son.name)
+
+        console.log(zhangsan.son.name);
+
+
+
+        function copy(json){
+           var newobj={};
+           for(var i in json){
+               if(typeof json[i]=="object"){
+                  newobj[i]=copy(json[i])
+               }else {
+                   newobj[i] = json[i];
+               }
+           }
+           return newobj;
+        }
+
+
+
+
 
 
 
