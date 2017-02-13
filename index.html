@@ -1,4 +1,130 @@
-<div>
-    123
-    456
-</div>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        /*
+        *  函数  数组    变量  流程控制  对象
+        *
+        *  函数式编程
+        *
+        *  1.  封装代码
+        *
+        *  2.  函数当做对象去用
+        *
+        *
+        *
+        *
+        *  3.  函数当做类(构造函数)
+        *
+        *
+        *
+        *
+        *
+        *  把函数当做对象取用的目的
+        *     -》形成一个命名空间，防止全局变量的污染
+        *
+        * */
+
+
+        function myArray(){
+
+           for(var i in arguments){
+               this[i]=arguments[i];
+           }
+           this.length=arguments.length;
+
+
+
+        }
+
+
+
+        myArray.prototype={
+            getValue:function(type){
+            var type=type||"min";
+            var temp=this[0];
+            for(var i =0;i<this.length;i++){
+                if(type=="min") {
+                    if (temp > this[i]) {
+                        temp = this[i];
+                    }
+                }else if(type=="max"){
+                    if (temp < this[i]) {
+                        temp = this[i];
+                    }
+                }
+            }
+            return temp;
+        },
+
+        sort:function(callback){
+            var newarr=[];
+
+            for(var i=0;i<this.length;i++){
+                newarr.push(this[i]);
+            }
+
+            for(var i=0;i<newarr.length;i++){
+                for(var j=i+1;j<newarr.length;j++){
+                    if(callback(newarr[i],newarr[j])){
+                        var temp=this[i];
+                        this[i]=this[j];
+                        this[j]=temp;
+                    }
+
+                }
+            }
+
+            return newarr;
+        }
+
+        }
+
+
+
+
+        /*
+        * 1.  通过构造函数（类）的方式
+        *
+        * 2.  json  javascript  里面独有的创建对象的方式，快速的存储和传递一些数据
+        *
+        * 键-》值
+        * */
+
+
+          var arr1=new myArray(343,21,123,31);
+          console.log(arr1.getValue());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
+
+
+
+
+
